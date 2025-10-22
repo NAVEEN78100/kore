@@ -7,7 +7,6 @@ import {
   FaListUl,
   FaIdBadge,
   FaCog,
-  FaHeart,
   FaHome,
 } from 'react-icons/fa';
 import { useCart } from '../context/CartContext';

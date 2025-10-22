@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { FaFilter, FaLeaf, FaSearch, FaUtensils, FaStar } from 'react-icons/fa';
+import { FaFilter, FaLeaf, FaSearch, FaUtensils } from 'react-icons/fa';
 import MenuItem from './MenuItem';
 import { MenuItem as MenuItemType } from '../types';
 import { getMenuItems, getMenuCategories } from '../services/api';

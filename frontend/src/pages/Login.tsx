@@ -4,7 +4,7 @@ import { loginUser, requestOtp, verifyOtp } from '../services/api';
 import { useAuth } from '../context/AuthContext';
 import toast from 'react-hot-toast';
 import { motion, AnimatePresence } from 'framer-motion';
-import { FaEye, FaEyeSlash, FaEnvelope, FaLock, FaShieldAlt, FaArrowRight, FaUtensils, FaUser, FaKey } from 'react-icons/fa';
+import { FaEye, FaEyeSlash, FaEnvelope, FaLock, FaShieldAlt, FaArrowRight, FaUtensils, FaKey } from 'react-icons/fa';
 
 const Login: React.FC = () => {
   const [tab, setTab] = useState<'password' | 'otp'>('password');

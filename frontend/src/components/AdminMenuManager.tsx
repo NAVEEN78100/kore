@@ -12,7 +12,6 @@ import {
   FaImage, 
   FaUtensils, 
   FaLeaf, 
-  FaDollarSign, 
   FaTag, 
   FaAlignLeft,
   FaTimes,

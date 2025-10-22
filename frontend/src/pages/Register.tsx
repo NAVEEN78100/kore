@@ -3,7 +3,7 @@ import { useNavigate, Link } from 'react-router-dom';
 import { registerUser } from '../services/api';
 import toast from 'react-hot-toast';
 import { motion } from 'framer-motion';
-import { FaEye, FaEyeSlash, FaEnvelope, FaLock, FaUser, FaPhone, FaMapMarkerAlt, FaArrowRight, FaUtensils, FaUserPlus } from 'react-icons/fa';
+import { FaEye, FaEyeSlash, FaEnvelope, FaLock, FaUser, FaPhone, FaMapMarkerAlt, FaArrowRight, FaUserPlus } from 'react-icons/fa';
 
 const Register: React.FC = () => {
   const [username, setUsername] = useState('');
