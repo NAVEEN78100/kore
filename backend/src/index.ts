@@ -77,15 +77,18 @@ app.use(notFound);
 // Error handling middleware
 app.use(errorHandler);
 
-// Start server
-ensureAdminUser().then(() => {
-	app.listen(PORT, () => {
-		console.log(`🚀 Server is running on port ${PORT}`);
-		console.log(`📖 API Documentation: http://localhost:${PORT}/health`);
-		console.log(`🍽️  Menu API: http://localhost:${PORT}/api/menu`);
-		console.log(`🔐  Auth API: http://localhost:${PORT}/api/auth`);
-		console.log(`📋 Orders API: http://localhost:${PORT}/api/order`);
+// Start server (only in development)
+if (process.env.NODE_ENV !== 'production') {
+	ensureAdminUser().then(() => {
+		app.listen(PORT, () => {
+			console.log(`🚀 Server is running on port ${PORT}`);
+			console.log(`📖 API Documentation: http://localhost:${PORT}/health`);
+			console.log(`🍽️  Menu API: http://localhost:${PORT}/api/menu`);
+			console.log(`🔐  Auth API: http://localhost:${PORT}/api/auth`);
+			console.log(`📋 Orders API: http://localhost:${PORT}/api/order`);
+		});
 	});
-});
+}
 
+// For Vercel deployment
 export default app;

@@ -9,7 +9,9 @@
     "start": "node dist/index.js",
     "lint": "eslint src/**/*.ts",
     "lint:fix": "eslint src/**/*.ts --fix",
-    "seed": "ts-node src/data/seedMenu.ts"
+    "seed": "ts-node src/data/seedMenu.ts",
+    "vercel-build": "npm run build",
+    "vercel-dev": "npm run dev"
   },
   "keywords": [
     "food",
