@@ -134,8 +134,7 @@ export async function requestOtp(req: Request, res: Response): Promise<void> {
 			return;
 		} catch (mailErr) {
 			if (DEV_MODE) {
-				console.warn('OTP email send failed (dev fallback):', mailErr);
-				console.log(`DEV OTP for ${user.email}: ${code}`);
+				console.warn('OTP email send failed (dev fallback), check SMTP config.');
 				res.json({ message: 'OTP sent to your email' });
 				return;
 			}

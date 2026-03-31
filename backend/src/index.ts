@@ -1,26 +1,7 @@
-import User from './models/User';
-async function ensureAdminUser() {
-	const adminEmail = process.env.ADMIN_EMAIL;
-	const adminPassword = process.env.ADMIN_PASSWORD;
-	const adminUsername = process.env.ADMIN_USERNAME || 'admin';
-	if (!adminEmail || !adminPassword) {
-		console.warn('⚠️  ADMIN_EMAIL / ADMIN_PASSWORD not set — skipping admin seed.');
-		return;
-	}
-	let existing = await User.findOne({ email: adminEmail });
-	if (!existing) {
-		await User.create({ username: adminUsername, email: adminEmail, password: adminPassword, name: 'Admin' });
-		console.log('✅ Admin user created:', adminEmail);
-	} else {
-		existing.password = adminPassword;
-		await existing.save();
-		console.log('✅ Admin password synced:', adminEmail);
-	}
-}
+import path from 'path';
+import dotenv from 'dotenv';
+dotenv.config({ path: path.resolve(__dirname, '../.env') });
 
-import path from "path";
-import dotenv from "dotenv";
-dotenv.config({ path: path.resolve(__dirname, "../.env") });
 import express from 'express';
 import cors from 'cors';
 import helmet from 'helmet';
@@ -32,12 +13,30 @@ import authRoutes from './routes/auth.routes';
 import { errorHandler, notFound } from './middleware/errorHandler';
 import { authMiddleware } from './middleware/auth';
 import config from './config/config';
+import User from './models/User';
+
+async function ensureAdminUser() {
+	const adminEmail = process.env.ADMIN_EMAIL;
+	const adminPassword = process.env.ADMIN_PASSWORD;
+	const adminUsername = process.env.ADMIN_USERNAME || 'admin';
+	if (!adminEmail || !adminPassword) {
+		console.warn('⚠️  ADMIN_EMAIL / ADMIN_PASSWORD not set — skipping admin seed.');
+		return;
+	}
+	const existing = await User.findOne({ email: adminEmail });
+	if (!existing) {
+		await User.create({ username: adminUsername, email: adminEmail, password: adminPassword, name: 'Admin' });
+		console.log('✅ Admin user created:', adminEmail);
+	} else {
+		existing.password = adminPassword;
+		await existing.save();
+		console.log('✅ Admin password synced:', adminEmail);
+	}
+}
 
 const app = express();
 const PORT = config.server.port;
-app.set("trust proxy", 1); 
-
-
+app.set('trust proxy', 1);
 
 // Connect to MongoDB
 connectDB();
@@ -58,34 +57,27 @@ app.use(limiter);
 
 // CORS configuration
 const corsOptions = {
-  origin: function (origin: string | undefined, callback: (err: Error | null, allow?: boolean) => void) {
-    const allowedOrigins = [
-      'https://api-kore.vercel.app',
-      'https://kore-mbrzpu0cg-aswin-kumar7s-projects.vercel.app',
-      'https://kore-v1.vercel.app'
-    ];
-    
-    // Allow requests with no origin (like mobile apps or curl requests)
-    if (!origin) return callback(null, true);
-    
-    if (allowedOrigins.indexOf(origin) !== -1 || process.env.NODE_ENV === 'development') {
-      callback(null, true);
-    } else {
-      console.log('CORS blocked origin:', origin);
-      callback(new Error('Not allowed by CORS'));
-    }
-  },
-  credentials: true,
-  methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH', 'OPTIONS'],
-  allowedHeaders: ['Content-Type', 'Authorization', 'X-Requested-With', 'Accept', 'Origin'],
-  exposedHeaders: ['Content-Range', 'X-Content-Range'],
-  maxAge: 86400 // 24 hours
+	origin: function (origin: string | undefined, callback: (err: Error | null, allow?: boolean) => void) {
+		const allowedOrigins = [
+			'https://api-kore.vercel.app',
+			'https://kore-mbrzpu0cg-aswin-kumar7s-projects.vercel.app',
+			'https://kore-v1.vercel.app',
+		];
+		if (!origin) return callback(null, true);
+		if (allowedOrigins.includes(origin) || process.env.NODE_ENV === 'development') {
+			callback(null, true);
+		} else {
+			callback(new Error('Not allowed by CORS'));
+		}
+	},
+	credentials: true,
+	methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH', 'OPTIONS'],
+	allowedHeaders: ['Content-Type', 'Authorization', 'X-Requested-With', 'Accept', 'Origin'],
+	exposedHeaders: ['Content-Range', 'X-Content-Range'],
+	maxAge: 86400,
 };
 
-// Apply CORS middleware
 app.use(cors(corsOptions));
-
-// Handle CORS preflight requests
 app.options('*', cors(corsOptions));
 
 // Body parsing middleware
@@ -93,23 +85,23 @@ app.use(express.json({ limit: '10mb' }));
 app.use(express.urlencoded({ extended: true }));
 
 // Root endpoint
-app.get('/', (req, res) => {
-	res.json({ 
-		success: true, 
-		message: 'KORE Food Ordering System API', 
+app.get('/', (_req, res) => {
+	res.json({
+		success: true,
+		message: 'KORE Food Ordering System API',
 		version: '1.1.0',
 		endpoints: {
 			health: '/health',
 			auth: '/api/auth',
 			menu: '/api/menu',
-			orders: '/api/orders'
+			orders: '/api/orders',
 		},
-		timestamp: new Date().toISOString() 
+		timestamp: new Date().toISOString(),
 	});
 });
 
 // Health check endpoint
-app.get('/health', (req, res) => {
+app.get('/health', (_req, res) => {
 	res.json({ success: true, message: 'Food Ordering System API is running', timestamp: new Date().toISOString() });
 });
 
@@ -129,11 +121,10 @@ app.use(errorHandler);
 if (process.env.NODE_ENV !== 'production') {
 	ensureAdminUser().then(() => {
 		app.listen(PORT, () => {
-			console.log(`🚀 Server is running on port ${PORT}`);
+			console.log(`🚀 Server running on port ${PORT}`);
 		});
 	});
 }
-
 
 // For Vercel deployment
 export default app;
