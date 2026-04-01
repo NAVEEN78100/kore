@@ -20,7 +20,18 @@ const App: React.FC = () => {
     <AuthProvider>
       <CartProvider>
         <BrowserRouter>
-          <Toaster position="top-right" />
+          <Toaster
+            position="top-right"
+            toastOptions={{
+              style: {
+                borderRadius: '14px',
+                background: '#fffaf5',
+                color: '#7c2d12',
+                border: '1px solid #fdba74',
+                boxShadow: '0 10px 30px rgba(124,45,18,0.12)'
+              },
+            }}
+          />
           <Routes>
             <Route path="/" element={<Navigate to="/intro" replace />} />
             <Route path="/intro" element={<Intro />} />

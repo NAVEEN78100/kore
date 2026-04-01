@@ -71,8 +71,8 @@ const Profile: React.FC = () => {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-50 via-white to-orange-50">
-      <div className="max-w-4xl mx-auto px-4 py-8">
+    <div className="min-h-screen">
+      <div className="max-w-4xl mx-auto px-4 py-10">
         {/* Header */}
         <motion.div
           initial={{ opacity: 0, y: -20 }}
@@ -101,7 +101,7 @@ const Profile: React.FC = () => {
             transition={{ delay: 0.1 }}
             className="md:col-span-2"
           >
-            <div className="bg-white rounded-2xl shadow-xl border border-gray-100 overflow-hidden">
+            <div className="bg-white/90 rounded-2xl shadow-2xl border border-white/80 overflow-hidden backdrop-blur-sm">
               {/* Card Header */}
               <div className="bg-gradient-to-r from-orange-500 to-rose-500 px-6 py-4">
                 <div className="flex items-center gap-3">
@@ -210,7 +210,7 @@ const Profile: React.FC = () => {
             className="space-y-6"
           >
             {/* Account Status */}
-            <div className="bg-white rounded-2xl shadow-xl border border-gray-100 p-6">
+            <div className="bg-white/90 rounded-2xl shadow-xl border border-white/80 p-6 backdrop-blur-sm">
               <h3 className="text-lg font-semibold text-gray-800 mb-4">Account Status</h3>
               <div className="space-y-3">
                 <div className="flex items-center justify-between">
@@ -229,7 +229,7 @@ const Profile: React.FC = () => {
             </div>
 
             {/* Danger Zone */}
-            <div className="bg-white rounded-2xl shadow-xl border border-red-100 p-6">
+            <div className="bg-white/90 rounded-2xl shadow-xl border border-red-100 p-6 backdrop-blur-sm">
               <h3 className="text-lg font-semibold text-red-800 mb-4">Danger Zone</h3>
               <p className="text-sm text-gray-600 mb-4">
                 Once you delete your account, there is no going back. Please be certain.

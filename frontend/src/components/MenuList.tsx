@@ -101,7 +101,7 @@ const MenuList: React.FC = () => {
   }
 
   return (
-    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 relative z-10">
+    <div className="section-wrap py-10 relative z-10">
       {/* Hero Header */}
       <motion.div
         initial={{ opacity: 0, y: -30 }}
@@ -109,8 +109,8 @@ const MenuList: React.FC = () => {
         transition={{ delay: 0.2 }}
         className="text-center mb-12"
       >
-        <div className="inline-flex items-center gap-3 mb-4">
-          <div className="h-12 w-12 bg-gradient-to-br from-orange-400 to-rose-500 rounded-xl flex items-center justify-center">
+        <div className="inline-flex items-center gap-3 mb-4 px-4 py-2.5 rounded-2xl bg-white/75 border border-orange-100 shadow-md backdrop-blur">
+          <div className="h-12 w-12 bg-gradient-to-br from-orange-400 to-rose-500 rounded-xl flex items-center justify-center shadow-lg">
             <FaUtensils className="h-6 w-6 text-white" />
           </div>
           <h1 className="text-4xl font-extrabold tracking-tight text-gray-800">
@@ -136,7 +136,7 @@ const MenuList: React.FC = () => {
             placeholder="Search for dishes..."
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
-            className="w-full pl-12 pr-4 py-3 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-transparent transition-all bg-white/80 backdrop-blur-sm"
+            className="w-full pl-12 pr-4 py-3.5 border border-orange-100 rounded-2xl focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-transparent transition-all bg-white/90 backdrop-blur-sm shadow-md"
           />
         </div>
       </motion.div>
@@ -148,7 +148,7 @@ const MenuList: React.FC = () => {
         transition={{ delay: 0.4 }}
         className="mb-8"
       >
-        <div className="bg-white/80 backdrop-blur-sm rounded-2xl p-6 shadow-lg border border-gray-100">
+        <div className="glass-panel p-6">
           <div className="flex items-center gap-3 mb-4">
             <FaFilter className="h-5 w-5 text-orange-600" />
             <h3 className="text-lg font-semibold text-gray-800">Filter Options</h3>
@@ -165,7 +165,7 @@ const MenuList: React.FC = () => {
                 className={`px-4 py-2 rounded-full text-sm font-medium border-2 transition-all duration-200 ${
                   selectedCategory === ''
                     ? 'bg-gradient-to-r from-orange-500 to-rose-500 text-white border-transparent shadow-lg'
-                    : 'bg-white text-gray-700 border-orange-200 hover:border-orange-300 hover:bg-orange-50'
+                    : 'bg-white/90 text-gray-700 border-orange-200 hover:border-orange-300 hover:bg-orange-50'
                 }`}
               >
                 All Items
@@ -179,7 +179,7 @@ const MenuList: React.FC = () => {
                   className={`px-4 py-2 rounded-full text-sm font-medium border-2 transition-all duration-200 ${
                     selectedCategory === category
                       ? 'bg-gradient-to-r from-orange-500 to-rose-500 text-white border-transparent shadow-lg'
-                      : 'bg-white text-gray-700 border-orange-200 hover:border-orange-300 hover:bg-orange-50'
+                      : 'bg-white/90 text-gray-700 border-orange-200 hover:border-orange-300 hover:bg-orange-50'
                   }`}
                 >
                   {category.split('-').map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(' ')}

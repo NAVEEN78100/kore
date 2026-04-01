@@ -30,8 +30,8 @@ const Navbar: React.FC<NavbarProps> = ({ onCartClick }) => {
   const isAdmin = user?.email === 'admin@kore.com';
 
   return (
-    <nav className="sticky top-0 z-40 bg-gradient-to-r from-orange-500 via-orange-600 to-rose-500 shadow-xl border-b border-orange-400/20">
-      <div className="backdrop-blur-sm bg-white/5">
+    <nav className="sticky top-0 z-40 border-b border-orange-200/50 bg-gradient-to-r from-orange-500/95 via-orange-600/95 to-rose-500/95 shadow-[0_10px_40px_rgba(234,88,12,0.28)] backdrop-blur-lg">
+      <div className="backdrop-blur-sm bg-white/10">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center h-16">
             {/* Logo/Brand */}
@@ -172,7 +172,7 @@ const Navbar: React.FC<NavbarProps> = ({ onCartClick }) => {
                         animate={{ opacity: 1, y: 0, scale: 1 }}
                         exit={{ opacity: 0, y: -8, scale: 0.95 }}
                         transition={{ duration: 0.15 }}
-                        className="absolute right-0 mt-3 w-64 bg-white rounded-xl shadow-2xl overflow-hidden border border-gray-100 z-20"
+                        className="absolute right-0 mt-3 w-64 bg-white/95 backdrop-blur-xl rounded-2xl shadow-2xl overflow-hidden border border-orange-100 z-20"
                       >
                         {/* User Info Header */}
                         <div className="bg-gradient-to-r from-orange-50 to-rose-50 px-4 py-3 border-b border-gray-100">
