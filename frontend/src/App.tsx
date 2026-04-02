@@ -24,11 +24,12 @@ const App: React.FC = () => {
             position="top-right"
             toastOptions={{
               style: {
-                borderRadius: '14px',
-                background: '#fffaf5',
-                color: '#7c2d12',
-                border: '1px solid #fdba74',
-                boxShadow: '0 10px 30px rgba(124,45,18,0.12)'
+                borderRadius: '18px',
+                background: 'rgba(255,255,255,0.96)',
+                color: '#1f2937',
+                border: '1px solid rgba(251, 146, 60, 0.18)',
+                boxShadow: '0 20px 50px rgba(124,45,18,0.14)',
+                backdropFilter: 'blur(18px)'
               },
             }}
           />

@@ -7,7 +7,7 @@ import { motion } from 'framer-motion';
 const MenuPage: React.FC = () => {
   const [isCartOpen, setIsCartOpen] = React.useState(false);
   return (
-    <div className="min-h-screen relative overflow-hidden">
+    <div className="page-shell">
       <Navbar onCartClick={() => setIsCartOpen(true)} />
       <motion.main 
         initial={{ opacity: 0, y: 8 }} 
